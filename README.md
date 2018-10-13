@@ -24,5 +24,5 @@ make.bat  - make and run.
 
 # Sample
 
-![]()
+![](https://raw.githubusercontent.com/NNNIC/psgg-java-sample/master/wiki/sample.png)
 

@@ -5,21 +5,76 @@ public class TestControl extends StateManager {
 	// [SYN-G-GEN OUTPUT START] indent[4] $/./$
 //  psggConverterLib.dll converted from TestControl.xlsx. 
     /*
-        S_0001
-        new state
+        S_END
     */
-    Consumer<Boolean> S_0001=(bFirst)->{
-        int x = 1;
-        if (x==1) { this.SetNextState( this.S_END ); }
+    Consumer<Boolean> S_END=(bFirst)->{
         if (this.HasNextState())
         {
             this.GoNextState();
         }
     };
     /*
-        S_END
+        S_GET_NUM
     */
-    Consumer<Boolean> S_END=(bFirst)->{
+    int m_num = -1;
+    Consumer<Boolean> S_GET_NUM=(bFirst)->{
+        if (bFirst) {
+            m_num = 11;
+        }
+        if (m_num==10) { this.SetNextState( this.S_GET_NUM1 ); }
+        else if (m_num==1) { this.SetNextState( this.S_GET_NUM3 ); }
+        else { this.SetNextState( this.S_GET_NUM2 ); }
+        if (this.HasNextState())
+        {
+            this.GoNextState();
+        }
+    };
+    /*
+        S_GET_NUM1
+        new state
+    */
+    Consumer<Boolean> S_GET_NUM1=(bFirst)->{
+        if (bFirst) {
+            System.out.println("==10!!");
+        }
+        if (!this.HasNextState())
+        {
+            this.SetNextState(this.S_END);
+        }
+        if (this.HasNextState())
+        {
+            this.GoNextState();
+        }
+    };
+    /*
+        S_GET_NUM2
+        new state
+    */
+    Consumer<Boolean> S_GET_NUM2=(bFirst)->{
+        if (bFirst) {
+            System.out.println("Nothing");
+        }
+        if (!this.HasNextState())
+        {
+            this.SetNextState(this.S_END);
+        }
+        if (this.HasNextState())
+        {
+            this.GoNextState();
+        }
+    };
+    /*
+        S_GET_NUM3
+        new state
+    */
+    Consumer<Boolean> S_GET_NUM3=(bFirst)->{
+        if (bFirst) {
+            System.out.println("Nothing");
+        }
+        if (!this.HasNextState())
+        {
+            this.SetNextState(this.S_END);
+        }
         if (this.HasNextState())
         {
             this.GoNextState();
@@ -31,7 +86,7 @@ public class TestControl extends StateManager {
     Consumer<Boolean> S_START=(bFirst)->{
         if (!this.HasNextState())
         {
-            this.SetNextState(this.S_0001);
+            this.SetNextState(this.S_GET_NUM);
         }
         if (this.HasNextState())
         {
